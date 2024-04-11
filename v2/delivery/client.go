@@ -409,6 +409,10 @@ func (c *Client) NewListOpenOrdersService() *ListOpenOrdersService {
 	return &ListOpenOrdersService{c: c}
 }
 
+func (c *Client) NewListUserTradesService() *ListUserTradesService {
+	return &ListUserTradesService{c: c}
+}
+
 // NewListOrdersService init listing orders service
 func (c *Client) NewListOrdersService() *ListOrdersService {
 	return &ListOrdersService{c: c}
