@@ -14,6 +14,7 @@ type ListUserTradesService struct {
 	startTime *int64
 	endTime   *int64
 	limit     *int
+	fromId    *int64
 }
 
 func (s *ListUserTradesService) Symbol(symbol string) *ListUserTradesService {
@@ -51,6 +52,11 @@ func (s *ListUserTradesService) Limit(limit int) *ListUserTradesService {
 	return s
 }
 
+func (s *ListUserTradesService) FromId(fromId int64) *ListUserTradesService {
+	s.fromId = &fromId
+	return s
+}
+
 // Do send request
 func (s *ListUserTradesService) Do(ctx context.Context, opts ...RequestOption) (res []*Trade, err error) {
 	r := &request{
@@ -75,6 +81,9 @@ func (s *ListUserTradesService) Do(ctx context.Context, opts ...RequestOption) (
 	}
 	if s.limit != nil {
 		r.setParam("limit", *s.limit)
+	}
+	if s.fromId != nil {
+		r.setParam("fromId", *s.fromId)
 	}
 	data, err := s.c.callAPI(ctx, r, opts...)
 	if err != nil {

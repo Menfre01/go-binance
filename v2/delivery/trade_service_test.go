@@ -46,6 +46,7 @@ func (s *tradeServiceTestSuite) TestListUserTrades() {
 	limit := 3
 	startTime := int64(1590743483586)
 	endTime := int64(1590743483587)
+	fromId := int64(0)
 	s.assertReq(func(r *request) {
 		e := newSignedRequest().setParams(params{
 			"symbol":    symbol,
@@ -53,12 +54,14 @@ func (s *tradeServiceTestSuite) TestListUserTrades() {
 			"startTime": startTime,
 			"endTime":   endTime,
 			"limit":     limit,
+			"fromId":    0,
 		})
 		s.assertRequestEqual(e, r)
 	})
 
 	trades, err := s.client.NewListUserTradesService().Symbol(symbol).
 		OrderID(orderID).StartTime(startTime).EndTime(endTime).
+		FromId(fromId).
 		Limit(limit).Do(newContext())
 	r := s.r()
 	r.NoError(err)
