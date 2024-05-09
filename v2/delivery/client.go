@@ -462,3 +462,8 @@ func (c *Client) NewChangePositionModeService() *ChangePositionModeService {
 func (c *Client) NewGetPositionModeService() *GetPositionModeService {
 	return &GetPositionModeService{c: c}
 }
+
+// NewGetCommissionRateService init get commission rate service
+func (c *Client) NewGetCommissionRateService() *GetCommissionRateService {
+	return &GetCommissionRateService{c: c}
+}
