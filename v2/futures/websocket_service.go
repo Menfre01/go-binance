@@ -998,7 +998,7 @@ type WsUserDataEvent struct {
 	Event               UserDataEventType     `json:"e"`
 	Time                int64                 `json:"E"`
 	CrossWalletBalance  string                `json:"cw"`
-	MarginCallPositions []WsPosition          `json:"p"`
+	MarginCallPositions any                   `json:"p"`
 	TransactionTime     int64                 `json:"T"`
 	AccountUpdate       WsAccountUpdate       `json:"a"`
 	OrderTradeUpdate    WsOrderTradeUpdate    `json:"o"`
